@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Custom Characters · Slay the Spire Modding</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Constructor"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Custom Characters · Slay the Spire Modding"/><meta property="og:type" content="website"/><meta property="og:url" content="https://alexdriedger.github.io/index.html"/><meta property="og:description" content="## Constructor"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/slay_the_spire.png" alt="Slay the Spire Modding"/><h2 class="headerTitleWithLogo">Slay the Spire Modding</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/getting-started" target="_self">Docs</a></li><li class=""><a href="https://discord.gg/VC6kRNu" target="_self">Discord</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Custom (BaseMod)</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Playing With Mods</h3><ul><li class="navListItem"><a class="navItem" href="/docs/play-with-mods">Playing With Mods</a></li><li class="navListItem"><a class="navItem" href="/docs/known-mods">List of Known Mods</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting">Troubleshooting Guide</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Modding Basics</h3><ul><li class="navListItem"><a class="navItem" href="/docs/getting-started">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/mts-basemod">ModTheSpire &amp; BaseMod</a></li><li class="navListItem"><a class="navItem" href="/docs/subscribers">Subscribers</a></li><li class="navListItem"><a class="navItem" href="/docs/patches">Patches</a></li><li class="navListItem"><a class="navItem" href="/docs/decompiling">Decompiling The Game</a></li><li class="navListItem"><a class="navItem" href="/docs/console">Console</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Custom (BaseMod)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/custom-cards">Custom Cards</a></li><li class="navListItem"><a class="navItem" href="/docs/card-tags">Card Tags</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/custom-characters">Custom Characters</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-character-animations">Custom Character Animations</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-colors">Custom Colors</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-events">Custom Events</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-keywords">Custom Keywords</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-monsters">Custom Monsters</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-potions">Custom Potions</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-relics">Custom Relics</a></li><li class="navListItem"><a class="navItem" href="/docs/mod-badges">Mod Badges</a></li><li class="navListItem"><a class="navItem" href="/docs/modal-card-choices">Modal Card Choices</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">IDs (BaseMod)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/id-cards">Cards</a></li><li class="navListItem"><a class="navItem" href="/docs/id-encounters">Encounters</a></li><li class="navListItem"><a class="navItem" href="/docs/id-events">Events</a></li><li class="navListItem"><a class="navItem" href="/docs/id-potions">Potions</a></li><li class="navListItem"><a class="navItem" href="/docs/id-relics">Relics</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Custom Characters</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="constructor"></a><a href="#constructor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constructor</h2>
+<p><code>AbstractPlayer(String name, AbstractPlayer.PlayerClass chosenClass)</code></p>
+<ul>
+<li><code>name</code> - the character id</li>
+<li><code>chosenClass</code> - the chosen class for the player</li>
+</ul>
+<p>For an example of what must be done in the constructor take a look in the example section down below.</p>
+<h2><a class="anchor" aria-hidden="true" id="enums"></a><a href="#enums" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enums</h2>
+<p>The base game denotes character options using the <code>AbstractPlayer.PlayerClass</code> enum so in order to add a new character to the game you must patch the enum using <code>ModTheSpire</code>'s enum patching feature in addition to registering it with <strong>BaseMod</strong>. Here is an example of how to do so:</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">import</span> com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.characters.AbstractPlayer;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlayerClassEnum</span> </span>{
+
+    <span class="hljs-meta">@SpireEnum</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> AbstractPlayer.PlayerClass MY_PLAYER_CLASS;
+    
+    
+}
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="requirements"></a><a href="#requirements" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Requirements</h2>
+<ol>
+<li>(prereq) Register a new custom color with BaseMod for the player - take a look here to see how (<a href="https://github.com/daviscook477/BaseMod/wiki/Custom-Colors">https://github.com/daviscook477/BaseMod/wiki/Custom-Colors</a>)</li>
+<li>Define a custom player class that has a public static CharSelectInfo getLoadout() method</li>
+<li>Register the custom player with BaseMod</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="api"></a><a href="#api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>API</h2>
+<p>Note that <code>addCharacter</code> should only be called in the <code>receiveEditCharacters</code> callback of <code>EditCharactersSubscriber</code>.</p>
+<p><code>addCharacter(Class characterClass, String titleString, String classString, String color, String selectText, String selectButton, String portrait, String characterID)</code></p>
+<ul>
+<li><code>characterClass</code> - the actual <code>Class</code> for your character (instance of <code>java.lang.Class</code>) (obtainable by <code>MyCharacter.class</code>)</li>
+<li><code>titleString</code> - the name of your character as it shows up in the statistics, you can/should use coloring for this string. For example the ironclad would be <code>#rThe #rIronclad</code></li>
+<li><code>classString</code> - honest I don't know what this one is used for so do anything non-null here</li>
+<li><code>color</code> - the name of the custom color for this character, e.g. <code>MY_CUSTOM_COLOR.toString()</code> where <code>MY_CUSTOM_COLOR</code> is the enum value for this character's color</li>
+<li><code>selectText</code> - the name of your character that shows up on the character select screen, e.g. <code>My Character</code></li>
+<li><code>selectButton</code> - the path to the select button texture (starting at the root of your jar)</li>
+<li><code>portrait</code> - the path to your character select portrait texture (starting at the root of your jar) (size: 1920px x 1200px)</li>
+<li><code>characterID</code> - should be <code>MY_PLAYER_CLASS.toString()</code> where <code>MY_PLAYER_CLASS</code> is the enum value for this character's class</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h2>
+<p>Too add the custom player you must do two steps - define the custom player and register it with <strong>BaseMod</strong>.</p>
+<h3><a class="anchor" aria-hidden="true" id="define-a-custom-player"></a><a href="#define-a-custom-player" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Define a Custom Player</h3>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">import</span> java.util.ArrayList;
+
+<span class="hljs-keyword">import</span> com.badlogic.gdx.math.MathUtils;
+<span class="hljs-keyword">import</span> com.esotericsoftware.spine.AnimationState;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.actions.utility.ExhaustAllEtherealAction;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.characters.AbstractPlayer;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.core.EnergyManager;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.core.Settings;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.powers.AbstractPower;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.screens.CharSelectInfo;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.unlock.UnlockTracker;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCharacter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractPlayer</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> ENERGY_PER_TURN = <span class="hljs-number">3</span>; <span class="hljs-comment">// how much energy you get every turn</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String MY_CHARACTER_SHOULDER_2 = <span class="hljs-string">"img/char/shoulder2.png"</span>; <span class="hljs-comment">// campfire pose</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String MY_CHARACTER_SHOULDER_1 = <span class="hljs-string">"img/char/shoulder1.png"</span>; <span class="hljs-comment">// another campfire pose</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String MY_CHARACTER_CORPSE = <span class="hljs-string">"img/char/corpse.png"</span>; <span class="hljs-comment">// dead corpse</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String MY_CHARACTER_SKELETON_ATLAS = <span class="hljs-string">"img/char/skeleton.atlas"</span>; <span class="hljs-comment">// spine animation atlas</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String MY_CHARACTER_SKELETON_JSON = <span class="hljs-string">"img/char/skeleton.json"</span>; <span class="hljs-comment">// spine animation json</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyCharacter</span> <span class="hljs-params">(String name, PlayerClass chosenClass)</span> </span>{
+        <span class="hljs-keyword">super</span>(name, setClass);
+        
+        <span class="hljs-keyword">this</span>.dialogX = (<span class="hljs-keyword">this</span>.drawX + <span class="hljs-number">0.0F</span> * Settings.scale); <span class="hljs-comment">// set location for text bubbles</span>
+        <span class="hljs-keyword">this</span>.dialogY = (<span class="hljs-keyword">this</span>.drawY + <span class="hljs-number">220.0F</span> * Settings.scale); <span class="hljs-comment">// you can just copy these values</span>
+        
+        initializeClass(<span class="hljs-keyword">null</span>, MY_CHARACTER_SHOULDER_2, <span class="hljs-comment">// required call to load textures and setup energy/loadout</span>
+                MY_CHARACTER_SHOULDER_1,
+                MY_CHARACTER_CORPSE, 
+                getLoadout(), <span class="hljs-number">20.0F</span>, -<span class="hljs-number">10.0F</span>, <span class="hljs-number">220.0F</span>, <span class="hljs-number">290.0F</span>, <span class="hljs-keyword">new</span> EnergyManager(ENERGY_PER_TURN));
+        
+        loadAnimation(MY_CHARACTER_SKELETON_ATLAS, MY_CHARCTER_SKELETON_JSON, <span class="hljs-number">1.0F</span>); <span class="hljs-comment">// if you're using modified versions of base game animations or made animations in spine make sure to include this bit and the following lines</span>
+        
+        AnimationState.TrackEntry e = <span class="hljs-keyword">this</span>.state.setAnimation(<span class="hljs-number">0</span>, <span class="hljs-string">"animation"</span>, <span class="hljs-keyword">true</span>);
+        e.setTime(e.getEndTime() * MathUtils.random());
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;String&gt; <span class="hljs-title">getStartingDeck</span><span class="hljs-params">()</span> </span>{ <span class="hljs-comment">// starting deck 'nuff said</span>
+        ArrayList&lt;String&gt; retVal = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        retVal.add(<span class="hljs-string">"MyCard0"</span>);
+        retVal.add(<span class="hljs-string">"MyCard0"</span>);
+        retVal.add(<span class="hljs-string">"MyCard0"</span>);
+        retVal.add(<span class="hljs-string">"MyCard0"</span>);
+        retVal.add(<span class="hljs-string">"MyCard1"</span>);
+        retVal.add(<span class="hljs-string">"MyCard1"</span>);
+        retVal.add(<span class="hljs-string">"MyCard1"</span>);
+        retVal.add(<span class="hljs-string">"MyCard1"</span>);
+        retVal.add(<span class="hljs-string">"MyCard2"</span>);
+        <span class="hljs-keyword">return</span> retVal;
+    }
+    
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;String&gt; <span class="hljs-title">getStartingRelics</span><span class="hljs-params">()</span> </span>{ <span class="hljs-comment">// starting relics - also simple</span>
+        ArrayList&lt;String&gt; retVal = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        retVal.add(<span class="hljs-string">"MyRelic"</span>);
+        UnlockTracker.markRelicAsSeen(<span class="hljs-string">"MyRelic"</span>);
+        <span class="hljs-keyword">return</span> retVal;
+    }
+    
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> STARTING_HP = <span class="hljs-number">75</span>;
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MAX_HP = <span class="hljs-number">75</span>;
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> STARTING_GOLD = <span class="hljs-number">99</span>;
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> HAND_SIZE = <span class="hljs-number">5</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> CharSelectInfo <span class="hljs-title">getLoadout</span><span class="hljs-params">()</span> </span>{ <span class="hljs-comment">// the rest of the character loadout so includes your character select screen info plus hp and starting gold</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CharSelectInfo(<span class="hljs-string">"My Character"</span>, <span class="hljs-string">"My character is a person from the outer worlds. He makes magic stuff happen."</span>,
+                STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, HAND_SIZE,
+            MyPlayerClassEnum.MY_PLAYER_CLASS, getStartingRelics(), getStartingDeck(), <span class="hljs-keyword">false</span>);
+    }
+    
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="add-to-basemod"></a><a href="#add-to-basemod" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add to BaseMod</h3>
+<p>Note that for this to work your mod must add the necessary custom color for the character like the wiki page on custom colors says.</p>
+<pre><code class="hljs css language-java"><span class="hljs-meta">@SpireInitializer</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyMod</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">EditCharactersSubscriber</span> </span>{
+    
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyMod</span><span class="hljs-params">()</span> </span>{
+                BaseMod.subscribeToEditCharacters(<span class="hljs-keyword">this</span>);
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initialize</span><span class="hljs-params">()</span> </span>{
+                MyMod mod = <span class="hljs-keyword">new</span> MyMod();
+        }
+
+        <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">receiveEditCharacters</span><span class="hljs-params">()</span> </span>{
+        logger.info(<span class="hljs-string">"begin editting characters"</span>);
+        
+        logger.info(<span class="hljs-string">"add "</span> + MyPlayerClassEnum.MY_PLAYER_CLASS.toString());
+        BaseMod.addCharacter(MyCharcter.class, <span class="hljs-string">"My Character"</span>, <span class="hljs-string">"character class string"</span>,
+                AbstractCardEnum.MY_CUSTOM_COLOR, <span class="hljs-string">"My Character"</span>,
+                MY_CHARACTER_BUTTON , MY_CHARACTER_PORTRAIT,
+                MyPlayerClassEnum.MY_PLAYER_CLASS;
+        
+        logger.info(<span class="hljs-string">"done editting characters"</span>);
+    }
+
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/card-tags"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/docs/custom-character-animations"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#constructor">Constructor</a></li><li><a href="#enums">Enums</a></li><li><a href="#requirements">Requirements</a></li><li><a href="#api">API</a></li><li><a href="#example">Example</a><ul class="toc-headings"><li><a href="#define-a-custom-player">Define a Custom Player</a></li><li><a href="#add-to-basemod">Add to BaseMod</a></li></ul></li></ul></nav></div></div></body></html>

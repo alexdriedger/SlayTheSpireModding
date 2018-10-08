@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Custom Character Animations · Slay the Spire Modding</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Spriter Animations"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Custom Character Animations · Slay the Spire Modding"/><meta property="og:type" content="website"/><meta property="og:url" content="https://alexdriedger.github.io/index.html"/><meta property="og:description" content="## Spriter Animations"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/slay_the_spire.png" alt="Slay the Spire Modding"/><h2 class="headerTitleWithLogo">Slay the Spire Modding</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/getting-started" target="_self">Docs</a></li><li class=""><a href="https://discord.gg/VC6kRNu" target="_self">Discord</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Custom (BaseMod)</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Playing With Mods</h3><ul><li class="navListItem"><a class="navItem" href="/docs/play-with-mods">Playing With Mods</a></li><li class="navListItem"><a class="navItem" href="/docs/known-mods">List of Known Mods</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting">Troubleshooting Guide</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Modding Basics</h3><ul><li class="navListItem"><a class="navItem" href="/docs/getting-started">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/mts-basemod">ModTheSpire &amp; BaseMod</a></li><li class="navListItem"><a class="navItem" href="/docs/subscribers">Subscribers</a></li><li class="navListItem"><a class="navItem" href="/docs/patches">Patches</a></li><li class="navListItem"><a class="navItem" href="/docs/decompiling">Decompiling The Game</a></li><li class="navListItem"><a class="navItem" href="/docs/console">Console</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Custom (BaseMod)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/custom-cards">Custom Cards</a></li><li class="navListItem"><a class="navItem" href="/docs/card-tags">Card Tags</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-characters">Custom Characters</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/custom-character-animations">Custom Character Animations</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-colors">Custom Colors</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-events">Custom Events</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-keywords">Custom Keywords</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-monsters">Custom Monsters</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-potions">Custom Potions</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-relics">Custom Relics</a></li><li class="navListItem"><a class="navItem" href="/docs/mod-badges">Mod Badges</a></li><li class="navListItem"><a class="navItem" href="/docs/modal-card-choices">Modal Card Choices</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">IDs (BaseMod)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/id-cards">Cards</a></li><li class="navListItem"><a class="navItem" href="/docs/id-encounters">Encounters</a></li><li class="navListItem"><a class="navItem" href="/docs/id-events">Events</a></li><li class="navListItem"><a class="navItem" href="/docs/id-potions">Potions</a></li><li class="navListItem"><a class="navItem" href="/docs/id-relics">Relics</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Custom Character Animations</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="spriter-animations"></a><a href="#spriter-animations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Spriter Animations</h2>
+<p>Get <strong>Spriter</strong> from <a href="https://brashmonkey.com/">https://brashmonkey.com/</a> and use it to create your animation. This will require having your character model split up into separate textures so you can move them about individually and some knowledge of skeletal animation. Try taking a look on youtube for &quot;spriter tutorial&quot;. This is the official tutorial playlist from BrashMonkey <a href="https://www.youtube.com/playlist?list=PL8Vej0NhCcI5sxOT64-Z31LW59VUyAVfr">https://www.youtube.com/playlist?list=PL8Vej0NhCcI5sxOT64-Z31LW59VUyAVfr</a>. Once you've made your spriter file export it and copy it to the resources directory for your mod. Then when defining your class that <strong>extends</strong> <code>CustomPlayer</code> when you make your call to <code>super</code> you will want to use this constructor:</p>
+<pre><code class="hljs css language-Java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CustomPlayer</span><span class="hljs-params">(String name, PlayerClass playerClass, String[] orbTextures, String orbVfxPath, <span class="hljs-keyword">float</span>[] layerSpeeds, AbstractAnimation animation)</span>
+</span></code></pre>
+<p>For the <code>animation</code> parameter you will want to pass an instance of <code>basemod.animations.SpriterAnimation</code> which has a very simple constructor: <code>public SpriterAnimation(String filepath)</code>. Simply pass the path to your spriter file to the <code>SpriterAnimation</code> constructor and you should be all set to be using animations made in <strong>Spriter</strong>.</p>
+<h2><a class="anchor" aria-hidden="true" id="g3dj-animations-old-difficult-to-use-and-has-a-performance-hit"></a><a href="#g3dj-animations-old-difficult-to-use-and-has-a-performance-hit" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>G3DJ Animations (Old, Difficult to use, and has a Performance Hit)</h2>
+<p>To make custom character animations you need Blender and fbx-conv:</p>
+<ul>
+<li>Blender (<a href="https://www.blender.org/">https://www.blender.org/</a>)</li>
+<li>fbx-conv (<a href="https://github.com/libgdx/fbx-conv">https://github.com/libgdx/fbx-conv</a>)</li>
+</ul>
+<p>In Blender you should just create a bunch of textured quads with your character art on them. (You need to be able to import images as planes). Look up some tutorial for 2d animation to see how to do this and make animations. You need these animations: (TODO list required animations for StS).</p>
+<p>You have to make your character quads in the xy-plane with the textures facing in the negative Z direction. Turn on <code>Backface Culling</code> in Blender so you can tell if your texture has its normals facing properly.</p>
+<p>When exporting to <code>fbx</code> from Blender, you <strong>should</strong> be able to leave things at default but here are the requirements:</p>
+<ul>
+<li>scale should be <code>1.0</code> to start out, up the scale to what looks right as you test</li>
+<li><code>Y-up</code></li>
+<li><code>forward: -Z</code></li>
+</ul>
+<p>Then when using fbx-conv to convert the fbx into either a g3db or g3dj file you need to use the <code>-f</code> flag for flipping textures because otherwise everything will be upside down.</p>
+<p>There are two file formats that libgdx supports: <code>g3db</code> and <code>g3dj</code>. <code>g3db</code> is a binary format whereas <code>g3dj</code> is a json format. Right now we only support loading from the json format but I'll get <code>g3db</code> loading working soon enough.</p>
+<p>Take a look at (<a href="https://github.com/gskleres/FruityMod-StS">https://github.com/gskleres/FruityMod-StS</a>) to see an example of how to get the character to use these files once you've made them. This feature isn't particularly well supported yet so hop on the StS discord on the <code>unsupported-modding</code> channel if you need help with it.</p>
+<p>Here's an example of how to load a g3dj file:</p>
+<pre><code class="hljs css language-java">        <span class="hljs-comment">// Model loader needs a binary json reader to decode</span>
+        JsonReader jsonReader = <span class="hljs-keyword">new</span> JsonReader();
+        
+        <span class="hljs-comment">// Create a model loader passing in our json reader</span>
+        G3dModelLoader modelLoader = <span class="hljs-keyword">new</span> G3dModelLoader(jsonReader);
+        
+        <span class="hljs-comment">// Now load the model by name</span>
+        myModel = modelLoader.loadModel(Gdx.files.internal(<span class="hljs-string">"data/seeker.g3dj"</span>));
+
+                <span class="hljs-comment">// Necessary to get transparent textures working - I don't know why</span>
+        <span class="hljs-keyword">for</span> (Material mat : myModel.materials) {
+            mat.set(<span class="hljs-keyword">new</span> BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA));
+        }
+        
+        <span class="hljs-comment">// Now create an instance. Instance holds the positioning data, etc</span>
+        <span class="hljs-comment">// of an instance of your model</span>
+        myInstance = <span class="hljs-keyword">new</span> ModelInstance(myModel, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10.0f</span>);
+
+        <span class="hljs-comment">// fbx-conv is supposed to perform this rotation for you... it</span>
+        <span class="hljs-comment">// doesnt seem to</span>
+        myInstance.transform.rotate(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">90</span>);
+
+        <span class="hljs-comment">// You use an AnimationController to um, control animations. Each</span>
+        <span class="hljs-comment">// control is tied to the model instance</span>
+        controller = <span class="hljs-keyword">new</span> AnimationController(myInstance);
+        <span class="hljs-comment">// Pick the current animation by name</span>
+        controller.setAnimation(<span class="hljs-string">"bottom|idle"</span>, <span class="hljs-number">1</span>, <span class="hljs-keyword">new</span> AnimationListener() {
+
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onEnd</span><span class="hljs-params">(AnimationDesc animation)</span> </span>{
+                <span class="hljs-comment">// this will be called when the current animation is done.</span>
+                <span class="hljs-comment">// queue up another animation called "Jump".</span>
+                <span class="hljs-comment">// Passing a negative to loop count loops forever. 1f for</span>
+                <span class="hljs-comment">// speed is normal speed.</span>
+                controller.queue(<span class="hljs-string">"bottom|idle"</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">1f</span>, <span class="hljs-keyword">null</span>, <span class="hljs-number">0f</span>);
+            }
+
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLoop</span><span class="hljs-params">(AnimationDesc animation)</span> </span>{
+                <span class="hljs-comment">// TODO Auto-generated method stub</span>
+
+            }
+
+        });
+</code></pre>
+<p>Code required in the <code>receiveModelRender(ModelBatch batch, Environment env)</code> function:</p>
+<pre><code class="hljs css language-java">        controller.update(Gdx.graphics.getDeltaTime());
+        batch.render(myInstance, env);
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/custom-characters"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/docs/custom-colors"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#spriter-animations">Spriter Animations</a></li><li><a href="#g3dj-animations-old-difficult-to-use-and-has-a-performance-hit">G3DJ Animations (Old, Difficult to use, and has a Performance Hit)</a></li></ul></nav></div></div></body></html>

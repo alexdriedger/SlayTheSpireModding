@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Custom Cards · Slay the Spire Modding</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## CustomCard Constructor"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Custom Cards · Slay the Spire Modding"/><meta property="og:type" content="website"/><meta property="og:url" content="https://alexdriedger.github.io/index.html"/><meta property="og:description" content="## CustomCard Constructor"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/slay_the_spire.png" alt="Slay the Spire Modding"/><h2 class="headerTitleWithLogo">Slay the Spire Modding</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/getting-started" target="_self">Docs</a></li><li class=""><a href="https://discord.gg/VC6kRNu" target="_self">Discord</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Custom (BaseMod)</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Playing With Mods</h3><ul><li class="navListItem"><a class="navItem" href="/docs/play-with-mods">Playing With Mods</a></li><li class="navListItem"><a class="navItem" href="/docs/known-mods">List of Known Mods</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting">Troubleshooting Guide</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Modding Basics</h3><ul><li class="navListItem"><a class="navItem" href="/docs/getting-started">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/mts-basemod">ModTheSpire &amp; BaseMod</a></li><li class="navListItem"><a class="navItem" href="/docs/subscribers">Subscribers</a></li><li class="navListItem"><a class="navItem" href="/docs/patches">Patches</a></li><li class="navListItem"><a class="navItem" href="/docs/decompiling">Decompiling The Game</a></li><li class="navListItem"><a class="navItem" href="/docs/console">Console</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Custom (BaseMod)</h3><ul><li class="navListItem navListItemActive"><a class="navItem" href="/docs/custom-cards">Custom Cards</a></li><li class="navListItem"><a class="navItem" href="/docs/card-tags">Card Tags</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-characters">Custom Characters</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-character-animations">Custom Character Animations</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-colors">Custom Colors</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-events">Custom Events</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-keywords">Custom Keywords</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-monsters">Custom Monsters</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-potions">Custom Potions</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-relics">Custom Relics</a></li><li class="navListItem"><a class="navItem" href="/docs/mod-badges">Mod Badges</a></li><li class="navListItem"><a class="navItem" href="/docs/modal-card-choices">Modal Card Choices</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">IDs (BaseMod)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/id-cards">Cards</a></li><li class="navListItem"><a class="navItem" href="/docs/id-encounters">Encounters</a></li><li class="navListItem"><a class="navItem" href="/docs/id-events">Events</a></li><li class="navListItem"><a class="navItem" href="/docs/id-potions">Potions</a></li><li class="navListItem"><a class="navItem" href="/docs/id-relics">Relics</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Custom Cards</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="customcard-constructor"></a><a href="#customcard-constructor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CustomCard Constructor</h2>
+<p><code>CustomCard(String id, String name, String img, int cost, String rawDescription, CardType type, CardColor color, CardRarity rarity, CardTarget target)</code></p>
+<ul>
+<li><code>id</code> - the card id</li>
+<li><code>name</code> - the name of the card</li>
+<li><code>img</code> - the path to the img for this card (image path starts at the root of your <code>jar</code>) (250px x 190px); the path to your larger version of the img (500 x 380p) should be img + &quot;_p&quot; so if img is &quot;my_card.png&quot; then the portrait version should be at &quot;my_card_p.png&quot;</li>
+<li><code>cost</code> - the energy cost of the card</li>
+<li><code>rawDescription</code> - the description for the card</li>
+<li><code>type</code> - the card type, e.g. <code>ATTACK</code>, <code>SKILL</code>, <code>POWER</code></li>
+<li><code>color</code> - the color of the card; base game options are <code>RED</code>, <code>GREEN</code>, <code>COLORLESS</code>, <code>CURSE</code>, <code>STATUS</code> however you can use custom colors here too</li>
+<li><code>rarity</code> - the card rarity, e.g. <code>COMMON</code>, <code>UNCOMMON</code>, <code>RARE</code></li>
+<li><code>target</code> - the type of target for the card, e.g. does it target <code>ENEMY</code>, <code>ALL_ENEMIES</code>, <code>SELF</code>, etc...</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="custom-per-card-textures"></a><a href="#custom-per-card-textures" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Per-Card Textures</h2>
+<p>The following methods can be called in the constructor, however, if you want to change the texture later you can call these at any point to change the texture.</p>
+<h3><a class="anchor" aria-hidden="true" id="card-background"></a><a href="#card-background" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Card Background.</h3>
+<p><code>setBackgroundTexture(String smallTexturePath, String largeTexturePath)</code></p>
+<ul>
+<li><code>smallTexturePath</code> - the path to the texture (512 x 512p).</li>
+<li><code>largeTexturePath</code> - the path to the inspect view texture (1024 x 1024p).</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="card-energy-orb"></a><a href="#card-energy-orb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Card Energy Orb.</h3>
+<p><code>setOrbTexture(String smallTexturePath, String largeTexturePath)</code></p>
+<ul>
+<li><code>smallTexturePath</code> - the path to the orb texture (512 x 512p).</li>
+<li><code>largeTexturePath</code> - the path to the inspect view orb texture (164 x 164p).</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="card-rarity-banner"></a><a href="#card-rarity-banner" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Card Rarity Banner.</h3>
+<p><code>setBannerTexture(String smallTexturePath, String largeTexturePath)</code></p>
+<ul>
+<li><code>smallTexturePath</code> - the path to the texture (512 x 512p).</li>
+<li><code>largeTexturePath</code> - the path to the inspect view texture (1024 x 1024p).</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="registering"></a><a href="#registering" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Registering</h2>
+<p>In order to use the methods below to add or remove cards you must implement <code>EditCardsSubscriber</code> and then override the <code>receiveEditCards</code> method. Inside that method is when you should add or remove cards.</p>
+<ul>
+<li><code>BaseMod.addCard(AbstractCard card)</code> (note: <code>CustomCard</code> extends <code>AbstractCard</code>).</li>
+<li><code>BaseMod.removeCard(AbstractCard card)</code> removes a card from the game (note: removing a card used by an event is currently untested/undefined behavior)</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="example-of-customcard"></a><a href="#example-of-customcard" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example of CustomCard</h2>
+<p>Let's say you wanted to create a card called <code>Flare</code> that would deal <code>3</code> damage to an enemy and apply <code>1</code> stack of vulnerable to it unupgraded and would deal <code>6</code> damage to the enemy and apply <code>2</code> stacks of vulnerable when upgraded.</p>
+<p>If the card is going to be <code>RED</code> and have it's art located at <code>img/my_card_img.png</code> in you jar file, the following code would create this card:</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">import</span> com.megacrit.cardcrawl.actions.AbstractGameAction;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.cards.AbstractCard;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.cards.DamageInfo;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.characters.AbstractPlayer;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.monsters.AbstractMonster;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.powers.VulnerablePower;
+
+<span class="hljs-keyword">import</span> basemod.abstracts.CustomCard;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Flare</span>
+<span class="hljs-keyword">extends</span> <span class="hljs-title">CustomCard</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String ID = <span class="hljs-string">"Flare"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String NAME = <span class="hljs-string">"Flare"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String DESCRIPTION = <span class="hljs-string">"Deal !D! damage. Apply !M! Vulnerable."</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String IMG_PATH = <span class="hljs-string">"img/my_card_img.png"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> COST = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> ATTACK_DMG = <span class="hljs-number">3</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> UPGRADE_PLUS_DMG = <span class="hljs-number">3</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> VULNERABLE_AMT = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> UPGRADE_PLUS_VULNERABLE = <span class="hljs-number">1</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Flare</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">super</span>(ID, NAME, IMG_PATH, COST, DESCRIPTION,
+                AbstractCard.CardType.ATTACK, AbstractCard.CardColor.RED,
+                AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
+        <span class="hljs-keyword">this</span>.magicNumber = <span class="hljs-keyword">this</span>.baseMagicNumber = VULNERABLE_AMT;
+        <span class="hljs-keyword">this</span>.damage=<span class="hljs-keyword">this</span>.baseDamage = ATTACK_DMG;
+        
+        <span class="hljs-keyword">this</span>.setBackgroundTexture(<span class="hljs-string">"img/custom_background_small.png"</span>, <span class="hljs-string">"img/custom_background_large.png"</span>);
+
+        <span class="hljs-keyword">this</span>.setOrbTexture(<span class="hljs-string">"img/custom_orb_small.png"</span>, <span class="hljs-string">"img/custom_orb_large.png"</span>);
+
+        <span class="hljs-keyword">this</span>.setBannerTexture(<span class="hljs-string">"img/custom_banner_large.png"</span>, <span class="hljs-string">"img/custom_banner_large.png"</span>);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">use</span><span class="hljs-params">(AbstractPlayer p, AbstractMonster m)</span> </span>{
+        AbstractDungeon.actionManager.addToBottom(<span class="hljs-keyword">new</span> com.megacrit.cardcrawl.actions.common.DamageAction(m,
+                <span class="hljs-keyword">new</span> DamageInfo(p, <span class="hljs-keyword">this</span>.damage, <span class="hljs-keyword">this</span>.damageTypeForTurn),
+                AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        AbstractDungeon.actionManager.addToBottom(<span class="hljs-keyword">new</span> ApplyPowerAction(m, p, <span class="hljs-keyword">new</span> VulnerablePower(m, <span class="hljs-keyword">this</span>.magicNumber, <span class="hljs-keyword">false</span>), <span class="hljs-keyword">this</span>.magicNumber, <span class="hljs-keyword">true</span>, AbstractGameAction.AttackEffect.NONE));
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> AbstractCard <span class="hljs-title">makeCopy</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Flare();
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">upgrade</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.upgraded) {
+            <span class="hljs-keyword">this</span>.upgradeName();
+            <span class="hljs-keyword">this</span>.upgradeDamage(UPGRADE_PLUS_DMG);
+            <span class="hljs-keyword">this</span>.upgradeMagicNumber(UPGRADE_PLUS_VULNERABLE);
+        }
+    }
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="note-about-inspect-view"></a><a href="#note-about-inspect-view" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Note about Inspect View</h2>
+<p>In the Card Library screen in the Compendium there is an inspect view that brings up a larger version of your card. This is found automatically based off of the original image location by adding a <code>_p</code> to the name. This art should have size 500px x 380px. An example of how the name changes works is <code>img/my_card.png</code> becomes <code>img/my_card_p.png</code>.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/console"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/docs/card-tags"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#customcard-constructor">CustomCard Constructor</a></li><li><a href="#custom-per-card-textures">Custom Per-Card Textures</a><ul class="toc-headings"><li><a href="#card-background">Card Background.</a></li><li><a href="#card-energy-orb">Card Energy Orb.</a></li><li><a href="#card-rarity-banner">Card Rarity Banner.</a></li></ul></li><li><a href="#registering">Registering</a></li><li><a href="#example-of-customcard">Example of CustomCard</a></li><li><a href="#note-about-inspect-view">Note about Inspect View</a></li></ul></nav></div></div></body></html>

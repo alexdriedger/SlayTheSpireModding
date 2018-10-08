@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Modal Card Choices · Slay the Spire Modding</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Modal choice cards allow cards to present a choice to the player when used."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Modal Card Choices · Slay the Spire Modding"/><meta property="og:type" content="website"/><meta property="og:url" content="https://alexdriedger.github.io/index.html"/><meta property="og:description" content="Modal choice cards allow cards to present a choice to the player when used."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/slay_the_spire.png" alt="Slay the Spire Modding"/><h2 class="headerTitleWithLogo">Slay the Spire Modding</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/getting-started" target="_self">Docs</a></li><li class=""><a href="https://discord.gg/VC6kRNu" target="_self">Discord</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Custom (BaseMod)</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Playing With Mods</h3><ul><li class="navListItem"><a class="navItem" href="/docs/play-with-mods">Playing With Mods</a></li><li class="navListItem"><a class="navItem" href="/docs/known-mods">List of Known Mods</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting">Troubleshooting Guide</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Modding Basics</h3><ul><li class="navListItem"><a class="navItem" href="/docs/getting-started">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/mts-basemod">ModTheSpire &amp; BaseMod</a></li><li class="navListItem"><a class="navItem" href="/docs/subscribers">Subscribers</a></li><li class="navListItem"><a class="navItem" href="/docs/patches">Patches</a></li><li class="navListItem"><a class="navItem" href="/docs/decompiling">Decompiling The Game</a></li><li class="navListItem"><a class="navItem" href="/docs/console">Console</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Custom (BaseMod)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/custom-cards">Custom Cards</a></li><li class="navListItem"><a class="navItem" href="/docs/card-tags">Card Tags</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-characters">Custom Characters</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-character-animations">Custom Character Animations</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-colors">Custom Colors</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-events">Custom Events</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-keywords">Custom Keywords</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-monsters">Custom Monsters</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-potions">Custom Potions</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-relics">Custom Relics</a></li><li class="navListItem"><a class="navItem" href="/docs/mod-badges">Mod Badges</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/modal-card-choices">Modal Card Choices</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">IDs (BaseMod)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/id-cards">Cards</a></li><li class="navListItem"><a class="navItem" href="/docs/id-encounters">Encounters</a></li><li class="navListItem"><a class="navItem" href="/docs/id-events">Events</a></li><li class="navListItem"><a class="navItem" href="/docs/id-potions">Potions</a></li><li class="navListItem"><a class="navItem" href="/docs/id-relics">Relics</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Modal Card Choices</h1></header><article><div><span><p>Modal choice cards allow cards to present a choice to the player when used.</p>
+<p>For example, if you wanted a card that gave the player a random red, green, or colorless card and wanted to give the player the choice what color card they got, it's possible with a modal choice card (<a href="https://streamable.com/gxx7t">https://streamable.com/gxx7t</a>). The code for this example card is available at the bottom of this page.</p>
+<h2><a class="anchor" aria-hidden="true" id="api"></a><a href="#api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>API</h2>
+<h3><a class="anchor" aria-hidden="true" id="modalchoicebuilder"></a><a href="#modalchoicebuilder" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ModalChoiceBuilder</h3>
+<p>To create a modal choice, you must use the <code>ModalChoiceBuilder</code> class.</p>
+<h4><a class="anchor" aria-hidden="true" id="settitle"></a><a href="#settitle" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>setTitle</code></h4>
+<p>Sets the banner title of the modal choice. If not used, banner title defaults to &quot;Choose an Option&quot;.</p>
+<h4><a class="anchor" aria-hidden="true" id="addoption"></a><a href="#addoption" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>addOption</code></h4>
+<p>There are three options for adding an option:</p>
+<ul>
+<li><code>addOption(String description, AbstractCard.CardTarget target)</code>
+<ul>
+<li>Adds an option card using a description and target. Option title will be &quot;Option X&quot; where X is the option's number. If chosen, calls the callback. Affected by <code>setColor</code> and <code>setCallback</code>.</li>
+</ul></li>
+<li><code>addOption(String title, String description, AbstractCard.CardTarget target)</code>
+<ul>
+<li>Adds an option card using a title, description, and target. If chosen, calls the callback. Affected by <code>setColor</code> and <code>setCallback</code>.</li>
+</ul></li>
+<li><code>addOption(AbstractCard card)</code>
+<ul>
+<li>Adds a custom card type. The <code>use()</code> method of the card is called if the option is chosen.</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="setcolor"></a><a href="#setcolor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>setColor</code></h4>
+<p>Sets the card color of any future options cards for this modal choice.</p>
+<h4><a class="anchor" aria-hidden="true" id="setcallback"></a><a href="#setcallback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>setCallback</code></h4>
+<p>Sets the callback of any future options cards for this modal choice.</p>
+<h4><a class="anchor" aria-hidden="true" id="create"></a><a href="#create" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>create</code></h4>
+<p>Finalizes and returns the <code>ModalChoice</code> object.</p>
+<h2><a class="anchor" aria-hidden="true" id="modalchoice"></a><a href="#modalchoice" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ModalChoice</h2>
+<h4><a class="anchor" aria-hidden="true" id="open"></a><a href="#open" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>open</code></h4>
+<p>Opens to modal choice screen, providing the options to the player. Generally used in your card's <code>use()</code> method.</p>
+<h4><a class="anchor" aria-hidden="true" id="generatetooltips"></a><a href="#generatetooltips" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>generateTooltips</code></h4>
+<p>Automatically generates tooltips for the modal options. To be used in <code>getCustomTooltips()</code> if your card inherits from <code>CustomCard</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="callback"></a><a href="#callback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Callback</code></h4>
+<p>A callback must implement the <code>ModalChoice.Callback</code> interface. When automatic option cards are chosen, their callback is called with the chosen card's index.</p>
+<h2><a class="anchor" aria-hidden="true" id="example-modal-card-code"></a><a href="#example-modal-card-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example Modal Card Code</h2>
+<pre><code class="hljs css language-Java"><span class="hljs-keyword">import</span> basemod.abstracts.CustomCard;
+<span class="hljs-keyword">import</span> basemod.helpers.ModalChoice;
+<span class="hljs-keyword">import</span> basemod.helpers.ModalChoiceBuilder;
+<span class="hljs-keyword">import</span> basemod.helpers.TooltipInfo;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.cards.AbstractCard;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.characters.AbstractPlayer;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.helpers.CardLibrary;
+<span class="hljs-keyword">import</span> com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ModalTest</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CustomCard</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ModalChoice</span>.<span class="hljs-title">Callback</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String ID = <span class="hljs-string">"ModalTest"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String NAME = <span class="hljs-string">"Modal Test"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String DESCRIPTION = <span class="hljs-string">"Choose Red, Green, or Colorless. NL Gain a random card of that color."</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> COST = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">private</span> ModalChoice modal;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ModalTest</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">super</span>(ID, NAME, <span class="hljs-keyword">null</span>, COST, DESCRIPTION, CardType.SKILL, CardColor.COLORLESS, CardRarity.BASIC, CardTarget.NONE);
+
+        modal = <span class="hljs-keyword">new</span> ModalChoiceBuilder()
+                .setCallback(<span class="hljs-keyword">this</span>) <span class="hljs-comment">// Sets callback of all the below options to this</span>
+                .setColor(CardColor.RED) <span class="hljs-comment">// Sets color of any following cards to red</span>
+                .addOption(<span class="hljs-string">"Add a random Red card to your hand."</span>, CardTarget.NONE)
+                .setColor(CardColor.GREEN) <span class="hljs-comment">// Sets color of any following cards to green</span>
+                .addOption(<span class="hljs-string">"Add a random Green card to your hand."</span>, CardTarget.NONE)
+                .setColor(CardColor.COLORLESS) <span class="hljs-comment">// Sets color of any following cards to colorless</span>
+                .addOption(<span class="hljs-string">"Add a random Colorless card to your hand."</span>, CardTarget.NONE)
+                .create();
+    }
+
+    <span class="hljs-comment">// Uses the titles and descriptions of the option cards as tooltips for this card</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;TooltipInfo&gt; <span class="hljs-title">getCustomTooltips</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> modal.generateTooltips();
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">use</span><span class="hljs-params">(AbstractPlayer p, AbstractMonster m)</span>
+    </span>{
+        modal.open();
+    }
+
+    <span class="hljs-comment">// This is called when one of the option cards us chosen</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">optionSelected</span><span class="hljs-params">(AbstractPlayer p, AbstractMonster m, <span class="hljs-keyword">int</span> i)</span>
+    </span>{
+        CardColor color;
+        <span class="hljs-keyword">switch</span> (i) {
+            <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+                color = CardColor.RED;
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+                color = CardColor.GREEN;
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+                color = CardColor.COLORLESS;
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-keyword">return</span>;
+        }
+
+        AbstractCard c;
+        <span class="hljs-keyword">if</span> (color == CardColor.COLORLESS) {
+            c = AbstractDungeon.returnTrulyRandomColorlessCard(AbstractDungeon.cardRandomRng).makeCopy();
+        } <span class="hljs-keyword">else</span> {
+            c = CardLibrary.getColorSpecificCard(color, AbstractDungeon.cardRandomRng).makeCopy();
+        }
+        AbstractDungeon.actionManager.addToBottom(<span class="hljs-keyword">new</span> MakeTempCardInHandAction(c, <span class="hljs-keyword">true</span>));
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">upgrade</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (!upgraded) {
+            upgradeName();
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> AbstractCard <span class="hljs-title">makeCopy</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ModalTest();
+    }
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/mod-badges"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/docs/id-cards"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#api">API</a><ul class="toc-headings"><li><a href="#modalchoicebuilder">ModalChoiceBuilder</a></li></ul></li><li><a href="#modalchoice">ModalChoice</a></li><li><a href="#example-modal-card-code">Example Modal Card Code</a></li></ul></nav></div></div></body></html>

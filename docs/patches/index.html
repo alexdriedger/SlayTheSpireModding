@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Patches (MTS) · Slay the Spire Modding</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="ModTheSpire uses SpirePatch to allow mods to patch their own code into Slay The Spire. When loading a mod, ModTheSpire searches through every class in the mod for any that have the `SpirePatch` annotation. For each method you want to patch with your mod, you must create a new class and annotate it with `SpirePatch`."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Patches (MTS) · Slay the Spire Modding"/><meta property="og:type" content="website"/><meta property="og:url" content="https://alexdriedger.github.io/index.html"/><meta property="og:description" content="ModTheSpire uses SpirePatch to allow mods to patch their own code into Slay The Spire. When loading a mod, ModTheSpire searches through every class in the mod for any that have the `SpirePatch` annotation. For each method you want to patch with your mod, you must create a new class and annotate it with `SpirePatch`."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/slay_the_spire.png" alt="Slay the Spire Modding"/><h2 class="headerTitleWithLogo">Slay the Spire Modding</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/getting-started" target="_self">Docs</a></li><li class=""><a href="https://discord.gg/VC6kRNu" target="_self">Discord</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Modding Basics</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Playing With Mods</h3><ul><li class="navListItem"><a class="navItem" href="/docs/play-with-mods">Playing With Mods</a></li><li class="navListItem"><a class="navItem" href="/docs/known-mods">List of Known Mods</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting">Troubleshooting Guide</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Modding Basics</h3><ul><li class="navListItem"><a class="navItem" href="/docs/getting-started">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/mts-basemod">ModTheSpire &amp; BaseMod</a></li><li class="navListItem"><a class="navItem" href="/docs/subscribers">Subscribers</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/patches">Patches</a></li><li class="navListItem"><a class="navItem" href="/docs/decompiling">Decompiling The Game</a></li><li class="navListItem"><a class="navItem" href="/docs/console">Console</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Custom (BaseMod)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/custom-cards">Custom Cards</a></li><li class="navListItem"><a class="navItem" href="/docs/card-tags">Card Tags</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-characters">Custom Characters</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-character-animations">Custom Character Animations</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-colors">Custom Colors</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-events">Custom Events</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-keywords">Custom Keywords</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-monsters">Custom Monsters</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-potions">Custom Potions</a></li><li class="navListItem"><a class="navItem" href="/docs/custom-relics">Custom Relics</a></li><li class="navListItem"><a class="navItem" href="/docs/mod-badges">Mod Badges</a></li><li class="navListItem"><a class="navItem" href="/docs/modal-card-choices">Modal Card Choices</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">IDs (BaseMod)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/id-cards">Cards</a></li><li class="navListItem"><a class="navItem" href="/docs/id-encounters">Encounters</a></li><li class="navListItem"><a class="navItem" href="/docs/id-events">Events</a></li><li class="navListItem"><a class="navItem" href="/docs/id-potions">Potions</a></li><li class="navListItem"><a class="navItem" href="/docs/id-relics">Relics</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Patches (MTS)</h1></header><article><div><span><p>ModTheSpire uses SpirePatch to allow mods to patch their own code into Slay The Spire. When loading a mod, ModTheSpire searches through every class in the mod for any that have the <code>SpirePatch</code> annotation. For each method you want to patch with your mod, you must create a new class and annotate it with <code>SpirePatch</code>.</p>
+<p>ModTheSpire currently supports the follow patch types:</p>
+<ul>
+<li><a href="#prefix">Prefix</a></li>
+<li><a href="#postfix">Postfix</a></li>
+<li><a href="#insert">Insert</a></li>
+<li><a href="#instrument">Instrument</a></li>
+<li><a href="#replace">Replace</a></li>
+<li><a href="#raw">Raw</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="general-rules"></a><a href="#general-rules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>General Rules</h2>
+<ul>
+<li>A patch class must be a <strong>public static</strong> class.</li>
+<li>A patch method must be a <strong>public static</strong> method.</li>
+<li>Use the <code>@SpirePatch</code> annotation on the patch class.</li>
+<li>Patch methods are passed all the arguments of the original method as well as the instance if original method is not static (instance first, then parameters).</li>
+</ul>
+<pre><code class="hljs css language-Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> [PatchMethod]([InstanceType] __instance, [parameters]...) { ... }
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="spirepatch-parameters"></a><a href="#spirepatch-parameters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>@SpirePatch Parameters</h3>
+<ul>
+<li><strong>clz</strong> Defines the class that contains the method to be patched.</li>
+<li><strong>cls</strong> <strong>(Old way)</strong> Defines the class that contains the method to be patched. Must be the complete class path and class name.</li>
+<li><strong>method</strong> Defines the method to be patched.
+<ul>
+<li>Use <code>SpirePatch.CONSTRUCTOR</code> to target a constructor.</li>
+<li>Use <code>SpirePatch.STATICINITIALIZER</code> to target a static initializer.</li>
+</ul></li>
+<li><strong>paramtypez</strong> Defines the parameter types of the method to be patched (only necessary if multiple methods with the same name exist).</li>
+<li><strong>paramtypes</strong> <strong>(Old way)</strong> Defines the parameter types of the method to be patched (only necessary if multiple methods with the same name exist). Type names must be complete class path and class name.</li>
+</ul>
+<pre><code class="hljs css language-Java"><span class="hljs-meta">@SpirePatch</span>(
+    clz=AbstractPlayer.class,
+    method=<span class="hljs-string">"useCard"</span>,
+    paramtypez={
+        AbstractCard.class,
+        AbstractMonster.class,
+        <span class="hljs-keyword">int</span>.class
+    }
+)
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExamplePatch</span>
+</span>{
+    ...
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="patching-order"></a><a href="#patching-order" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Patching Order</h3>
+<p>Patches are applied first in order of type, then in order of mod. Patch type is ordered: Insert, Instrument, Replace, Prefix, Postfix, Raw. This means all Insert patches will be applied before any Instrument patches are applied, and so on. If two or more mods are loaded and define patches of the same type, those patches will be loaded in the order the mods were ordered in the launcher. If a single mod defines multiple patches of the same type, they will be applied in an arbitrary order.</p>
+<h2><a class="anchor" aria-hidden="true" id="prefix"></a><a href="#prefix" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prefix</h2>
+<p>Prefix patching inserts a call to your <code>Prefix</code> method at the start of the method you are patching.</p>
+<p>You may also use the <code>@SpirePrefixPatch</code> annotation to denote a method to be a Prefix.</p>
+<pre><code class="hljs css language-Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Prefix</span><span class="hljs-params">(Ironclad __instance)</span>
+</span>{
+    ...
+}
+
+<span class="hljs-meta">@SpirePrefixPatch</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Foobar</span><span class="hljs-params">(Ironclad __instance)</span>
+</span>{
+    ...
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="features"></a><a href="#features" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Features</h4>
+<ul>
+<li><a href="https://github.com/kiooeht/ModTheSpire/wiki/@ByRef">@ByRef</a></li>
+<li><a href="https://github.com/kiooeht/ModTheSpire/wiki/SpireReturn">SpireReturn</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="postfix"></a><a href="#postfix" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Postfix</h2>
+<p>Postfix patching inserts a call to your <code>Postfix</code> method at the end of the method you are patching. Postfix patches can also change the return value of the patched method. You can do this by adding a return value to your <code>Postfix</code> method. If you also add another parameter as the first parameter to your <code>Postfix</code> method of the same type as your <code>Postfix</code> returns, you will be passed the original return value of the patched method.</p>
+<p>You may also use the <code>@SpirePostfixPatch</code> annotation to denote a method to be a Postfix.</p>
+<pre><code class="hljs css language-Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Postfix</span><span class="hljs-params">(Ironclad __instance)</span>
+<span class="hljs-comment">// or</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;String&gt; <span class="hljs-title">Postfix</span><span class="hljs-params">(ArrayList&lt;String&gt; __result, Ironclad __instance)</span>
+</span>{
+    __result.add(<span class="hljs-string">"Example Card"</span>);
+    <span class="hljs-keyword">return</span> __result;
+}
+
+<span class="hljs-meta">@SpirePostfixPatch</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Foobar</span><span class="hljs-params">(Ironclad __instance)</span>
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="insert"></a><a href="#insert" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Insert</h2>
+<p>Insert patching inserts a call to your <code>Insert</code> method in middle of the method you are patching. An <code>Insert</code> method must be accompanied by the @SpireInsertPatch.</p>
+<p>You may also use the <code>@SpireInsertPatch</code> annotation to denote a method to be an Insert.</p>
+<h3><a class="anchor" aria-hidden="true" id="spireinsertpatch-parameters"></a><a href="#spireinsertpatch-parameters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>@SpireInsertPatch Parameters</h3>
+<p>Either <code>loc</code> or <code>rloc</code> or <code>locator</code> <em>must</em> be given. The patch method will be called directly before the line number specified. You can find the line numbers by using a java decompiler. <a href="https://github.com/java-decompiler/jd-gui/releases">JD-GUI</a> seems to work best for getting correct line numbers. If JD-GUI can't decompile a class, use <a href="https://github.com/deathmarine/Luyten/releases">Luyten</a> and turn on debug line numbers (Settings &gt; Show Debug Line Numbers). The line numbers you want appear as comments at the start of each line in Luyten (ex: <code>/*SL:27*/</code>).</p>
+<p>Example, with <code>loc=121</code>:</p>
+<pre><code class="hljs css language-Java"><span class="hljs-number">120</span>:  System.out.println(<span class="hljs-string">"A"</span>);
+      <span class="hljs-comment">// Code inserted here</span>
+<span class="hljs-number">121</span>:  System.out.println(<span class="hljs-string">"A"</span>);
+<span class="hljs-number">122</span>:  System.out.println(<span class="hljs-string">"A"</span>);
+</code></pre>
+<p>If you use <code>rloc</code> there are a few things to keep in mind. A patch with <code>rloc=0</code> inserts before the first line with a debug line number in the body of the method you are patching. So, to get a <code>rloc</code> line number you can simply subtract the debug line number that would get <code>rloc=0</code> from the debug line number of the position you want to insert at.</p>
+<p>Example (122 - 120 = <code>rloc=2</code>):</p>
+<pre><code class="hljs css language-Java">      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">// rloc=0 would insert a patch here</span>
+<span class="hljs-number">120</span>:    System.out.println(<span class="hljs-string">"A"</span>);
+
+        <span class="hljs-comment">// rloc=2 would insert a patch here</span>
+<span class="hljs-number">122</span>:    System.out.println(<span class="hljs-string">"B"</span>);
+      }
+</code></pre>
+<p>If you want the same patch to be inserted at multiple places you have the option of specifying <code>locs</code> or <code>rlocs</code> which are arrays of line numbers that your patch will inserted at. Example with <code>locs = {121, 123}</code>. If you specify <code>locs</code> or <code>rlocs</code> you <em>do not</em> have to specify <code>loc</code> or <code>rloc</code>.</p>
+<pre><code class="hljs css language-Java"><span class="hljs-number">120</span>:  System.out.println(<span class="hljs-string">"A"</span>);
+      <span class="hljs-comment">// Code inserted here</span>
+<span class="hljs-number">121</span>:  System.out.println(<span class="hljs-string">"A"</span>);
+<span class="hljs-number">122</span>:  System.out.println(<span class="hljs-string">"A"</span>);
+            <span class="hljs-comment">// Code **also** inserted here</span>
+<span class="hljs-number">123</span>:  System.out.println(<span class="hljs-string">"A"</span>);
+</code></pre>
+<ul>
+<li><strong>loc</strong> Defines the absolute line number to insert at, absolute to the start of the file.</li>
+<li><strong>rloc</strong> Defines the line number to insert at, relative to the start of the method to be patched.</li>
+<li><strong>locs</strong> Defines an additional array of line numbers to insert at, absolute to the start of the file.</li>
+<li><strong>rlocs</strong> Defines an additional array of line numbers to insert at, relative to the start of the method to be patched.</li>
+<li><strong>localvars</strong> Used to capture any local variables and pass them to the patch method. Captured variables are passed as arguments, appearing the in parameter list after the original method's parameters.</li>
+</ul>
+<pre><code class="hljs css language-Java"><span class="hljs-meta">@SpireInsertPatch</span>(
+    loc=<span class="hljs-number">123</span>,
+    localvars={<span class="hljs-string">"example"</span>}
+)
+<span class="hljs-comment">// or</span>
+<span class="hljs-meta">@SpireInsertPatch</span>(
+    rloc=<span class="hljs-number">4</span>,
+    localvars={<span class="hljs-string">"example"</span>}
+)
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Insert</span><span class="hljs-params">(Ironclad __instance, String param1, String param2, <span class="hljs-keyword">int</span> example)</span>
+</span>{
+    ...
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="features-1"></a><a href="#features-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Features</h4>
+<ul>
+<li><a href="https://github.com/kiooeht/ModTheSpire/wiki/@ByRef">@ByRef</a></li>
+<li><a href="https://github.com/kiooeht/ModTheSpire/wiki/SpireReturn">SpireReturn</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="locator"></a><a href="#locator" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Locator</h3>
+<p>Since Slay The Spire is on a weekly update schedule, line numbers are subject to a lot of change. As such <code>rloc</code> is almost always preferable to <code>loc</code> since it is resilient to other areas of the file being patched changing. However, if you want a patch that is even more resilient to the weekly patches than <code>rloc</code>, you can use a <code>Locator</code>. A <code>Locator</code> is a function that is passed the raw <code>CtBehavior</code> from the Javassist API for the method your @SpireInsertPatch is patching. The <code>Locator</code> returns an array of line numbers that indicate where the patch should be applied. To specify a Locator, use the <code>locator</code> parameter of <code>@SpireInsertPatch</code>. When using a <code>Locator</code> you <em>should not</em> specify <code>loc</code>, <code>rloc</code>, <code>locs</code>, or <code>rlocs</code> on your <code>@SpireInsertPatch</code> because the <code>Locator</code> will handle finding the line number.</p>
+<p>The reason why <code>Locator</code> is preferable to <code>rloc</code> is because it can patch based on the <em>game logic</em>. For example, the fact that the game creates a <code>new AbstractDungeon</code> to start the game isn't likely to change ever, <em>however</em>, the location of the line where the game creates the <code>new AbstractDungeon</code> could change if the developers make some unrelated changes to the calling method. This change by the devs shouldn't prevent the patch from working but if the patch was done with <code>rloc</code> is very likely to fail now. Instead, with a <code>Locator</code> you can explicitly specify that you want to patch the line before the creation of <code>new AbstractDungeon</code> so no matter where that line changes to, the patch will always find it.</p>
+<p>ModTheSpire provides an API that can assist you in finding the lines that match your expected location. The <code>LineFinder</code> provides two methods <code>findInOrder</code> and <code>findAllInOrder</code> that can be used to find the <em>first</em> or find <em>all</em> the lines matching a description specified by a <code>List&lt;Matcher&gt; expectedMatches</code> and <code>Matcher finalMatch</code>. This uses the <code>Matcher</code> type which is a simple way to express that you want to for example match a <code>new</code> declaration or a method call. Example for finding the line at which the <code>end</code> method is called on the <code>SpireBatch</code> in the <code>render</code> method on <code>CardCrawlGame</code>.</p>
+<pre><code class="hljs css language-Java"><span class="hljs-meta">@SpirePatch</span>(
+  clz=CardCrawlGame.class,
+  method=<span class="hljs-string">"render"</span>
+)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostRenderHook</span> </span>{
+
+  <span class="hljs-meta">@SpireInsertPatch</span>(
+    locator=Locator.class,
+    localvars={<span class="hljs-string">"sb"</span>}
+  )
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Insert</span><span class="hljs-params">(CardCrawlGame __instance, SpriteBatch sb)</span> </span>{
+    <span class="hljs-comment">// draw things right before the SpriteBatch has `end` called</span>
+  }
+
+  <span class="hljs-comment">// ModTheSpire searches for a nested class that extends SpireInsertLocator</span>
+  <span class="hljs-comment">// This class will be the Locator for the @SpireInsertPatch</span>
+  <span class="hljs-comment">// When a Locator is not specified, ModTheSpire uses the default behavior for the @SpireInsertPatch</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Locator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SpireInsertLocator</span> </span>{
+    <span class="hljs-comment">// This is the abstract method from SpireInsertLocator that will be used to find the line</span>
+    <span class="hljs-comment">// numbers you want this patch inserted at</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] Locate(CtBehavior ctMethodToPatch) <span class="hljs-keyword">throws</span> CannotCompileException, PatchingException {
+      <span class="hljs-comment">// finalMatcher is the line that we want to insert our patch before -</span>
+      <span class="hljs-comment">// in this example we are using a `MethodCallMatcher` which is a type</span>
+      <span class="hljs-comment">// of matcher that matches a method call based on the type of the calling</span>
+      <span class="hljs-comment">// object and the name of the method being called. Here you can see that</span>
+      <span class="hljs-comment">// we're expecting the `end` method to be called on a `SpireBatch`</span>
+      Matcher finalMatcher = <span class="hljs-keyword">new</span> Matcher.MethodCallMatcher(
+          <span class="hljs-string">"com.badlogic.gdx.graphics.g2d.SpriteBatch"</span>, <span class="hljs-string">"end"</span>);
+
+      <span class="hljs-comment">// the `new ArrayList&lt;Matcher&gt;()` specifies the prerequisites before the line can be matched -</span>
+      <span class="hljs-comment">// the LineFinder will search for all the prerequisites in order before it will match the finalMatcher -</span>
+      <span class="hljs-comment">// since we didn't specify any prerequisites here, the LineFinder will simply find the first expression</span>
+      <span class="hljs-comment">// that matches the finalMatcher.</span>
+      <span class="hljs-keyword">return</span> LineFinder.findInOrder(ctMethodToPatch, <span class="hljs-keyword">new</span> ArrayList&lt;Matcher&gt;(), finalMatcher);
+    }
+  }
+
+}
+</code></pre>
+<p>If you want to write your own line finders to find more specific scenarios, like for example to find the last time a method is called, take a look at the <code>com.evacipated.cardcrawl.modthespire.finders.MatchFinderExprEditor</code> API and look at the sample implementations of <code>InOrderFinder</code> and <code>InOrderMultiFinder</code> here on Github.</p>
+<h2><a class="anchor" aria-hidden="true" id="instrument"></a><a href="#instrument" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Instrument</h2>
+<p>Instrument patching is much more powerful that the previous types of patching, but also more complex. Instrument patching gives you more access to javassist's API, allowing you to alter code in the method you are patching. For example, removing or replacing all method calls inside the method you are patching. See the javassist tutorial and documentation:
+<a href="https://jboss-javassist.github.io/javassist/tutorial/tutorial2.html#alter">https://jboss-javassist.github.io/javassist/tutorial/tutorial2.html#alter</a></p>
+<pre><code class="hljs css language-Java"><span class="hljs-keyword">import</span> org.javassist.expr.ExprEditor;
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ExprEditor <span class="hljs-title">Instrument</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ExprEditor() {
+        ...
+    };
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="replace"></a><a href="#replace" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Replace</h2>
+<p>A Replace patch will completely replace a method with your own. None of the original method's code will be called, calling your replace patch's code instead.
+For example, the following patch will replace the method body of <code>CardLibary.getCardList</code>:</p>
+<pre><code class="hljs css language-Java"><span class="hljs-meta">@SpirePatch</span>(
+    clz=CardLibrary.class,
+    method=<span class="hljs-string">"getCardList"</span>
+)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetCardList</span>
+</span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Object <span class="hljs-title">Replace</span><span class="hljs-params">(LibraryType type)</span>
+    </span>{
+        ...
+    }
+}
+</code></pre>
+<p><strong>Note</strong> Because of the order patches are applied, Replace patching a method will override any Insert or Instrument patches on the same method.</p>
+<p><strong>Warning: DO NOT use a Replace patch unless absolutely necessary. The destructive nature of Replace patches mean you override any other patches applied to the method you're patching.</strong></p>
+<h2><a class="anchor" aria-hidden="true" id="raw"></a><a href="#raw" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Raw</h2>
+<p>Raw patches give you access to the underlying Javassist API to make lower-level changes. This gives you must more flexibility in the changes you can make.</p>
+<p>Raw patches are passed the <code>CtBehavior</code> object for the method you're patching. It is then up to you to use the Javassist API to make any changes you want. Starting places to learn Javassist: <a href="https://jboss-javassist.github.io/javassist/html/javassist/CtBehavior.html">CtBehavior</a> and <a href="https://jboss-javassist.github.io/javassist/tutorial/tutorial2.html#alter">Javassist tutorial</a>.</p>
+<pre><code class="hljs css language-Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Raw</span><span class="hljs-params">(CtBehavior ctMethodToPatch)</span>
+</span>{
+    ...
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/subscribers"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/docs/decompiling"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#general-rules">General Rules</a><ul class="toc-headings"><li><a href="#spirepatch-parameters">@SpirePatch Parameters</a></li><li><a href="#patching-order">Patching Order</a></li></ul></li><li><a href="#prefix">Prefix</a></li><li><a href="#postfix">Postfix</a></li><li><a href="#insert">Insert</a><ul class="toc-headings"><li><a href="#spireinsertpatch-parameters">@SpireInsertPatch Parameters</a></li><li><a href="#locator">Locator</a></li></ul></li><li><a href="#instrument">Instrument</a></li><li><a href="#replace">Replace</a></li><li><a href="#raw">Raw</a></li></ul></nav></div></div></body></html>
