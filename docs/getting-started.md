@@ -6,7 +6,7 @@ sidebar_label: Getting Started
 
 Welcome to modding Slay the Spire! This page will help you build your first Slay the Spire mod.
 
-> If you are not looking to develop mods, the guide to play other people's mods is found [here](play-with-mods.md)
+> If you are not looking to develop mods, the guide to play other people's mods is found [here](play-with-mods.md).
 
 ## Setting Up Your Development Environment
 
